@@ -56,7 +56,16 @@
 
     <script src="https://static.line-scdn.net/liff/edge/versions/2.2.0/sdk.js"></script>
     <script>
-      function createUniversalLink() {}
+      function createUniversalLink() {
+        // Gets the permanent link for the current page.
+        const link1 = liff.permanentLink.createUrl();
+        document.getElementById("universalLink1").append(link1);
+
+        liff.permanentLink.setExtraQueryParams("param=9");
+
+        const link2 = liff.permanentLink.createUrl();
+        document.getElementById("universalLink2").append(link2);
+      }
 
       async function shareMsg() {
         // Displays the target picker (screen for selecting a group or friend) and sends the message created by the developer to the selected target.
@@ -183,12 +192,11 @@
           getUserProfile();
           getContext();
           getFriendship();
+          createUniversalLink();
         } else {
           // Performs the LINE Login process (web login) for the Web app.
           liff.login();
         }
-
-        // createUniversalLink()
       }
 
       main();
