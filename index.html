@@ -34,6 +34,7 @@
     <p id="scanCode"><b>Code: </b></p>
 
     <p id="isLoggedIn"><b>isLoggedIn: </b></p>
+
     <p id="universalLink1"><b>Universal Link: </b></p>
     <p id="universalLink2"><b>Universal Link with Query params: </b></p>
     <p><a href="liff/path/?param=9">Link to Path</a></p>
@@ -58,7 +59,9 @@
 
       async function shareMsg() {}
 
-      function logOut() {}
+      function logOut() {
+        //
+      }
 
       function closed() {
         // Closes the LIFF app.
@@ -161,10 +164,16 @@
         // Initializes a LIFF app. You can only call other LIFF SDK methods after calling liff.init()
         await liff.init({ liffId: "1654440750-aWEBeMPD" });
 
-        getEnvironment();
-        getUserProfile();
-        getContext();
-        getFriendship();
+        // Checks whether the user is logged in.
+        document.getElementById("isLoggedIn").append(liff.isLoggedIn());
+
+        if (liff.isLoggedIn()) {
+          getEnvironment();
+          getUserProfile();
+          getContext();
+          getFriendship();
+        }
+
         // createUniversalLink()
       }
 
