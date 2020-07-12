@@ -10,29 +10,30 @@
     <link rel="stylesheet" href="css/style.css" media="all" />
   </head>
   <body>
-    <p id="os"><b>OS:</b></p>
-    <p id="language"><b>Language:</b></p>
-    <p id="version"><b>Version:</b></p>
-    <p id="isInClient"><b>isInClient:</b></p>
-    <p id="accessToken"><b>AccessToken:</b></p>
+    <p id="os"><b>OS: </b></p>
+    <p id="language"><b>Language: </b></p>
+    <p id="version"><b>Version: </b></p>
+    <p id="isInClient"><b>isInClient: </b></p>
+    <p id="accessToken"><b>AccessToken: </b></p>
 
     <img id="pictureUrl" />
-    <p id="userId"><b>userId:</b></p>
-    <p id="displayName"><b>displayName:</b></p>
-    <p id="statusMessage"><b>statusMessage:</b></p>
+    <p id="userId"><b>userId: </b></p>
+    <p id="displayName"><b>displayName: </b></p>
+    <p id="statusMessage"><b>statusMessage: </b></p>
 
-    <p id="decodedIDToken"><b>email:</b></p>
+    <p id="decodedIDToken"><b>email: </b></p>
 
-    <p id="type"><b>type:</b></p>
-    <p id="viewType"><b>viewType:</b></p>
-    <p id="utouId"><b>utouId:</b></p>
-    <p id="roomId"><b>roomId:</b></p>
-    <p id="groupId"><b>groupId:</b></p>
-    <p id="friendship"><b>isFriendship:</b></p>
-    <p id="scanCode"><b>Code:</b></p>
-    <p id="isLoggedIn"><b>isLoggedIn:</b></p>
-    <p id="universalLink1"><b>Universal Link:</b></p>
-    <p id="universalLink2"><b>Universal Link with Query params:</b></p>
+    <p id="type"><b>type: </b></p>
+    <p id="viewType"><b>viewType: </b></p>
+    <p id="utouId"><b>utouId: </b></p>
+    <p id="roomId"><b>roomId: </b></p>
+    <p id="groupId"><b>groupId: </b></p>
+
+    <p id="friendship"><b>isFriendship: </b></p>
+    <p id="scanCode"><b>Code: </b></p>
+    <p id="isLoggedIn"><b>isLoggedIn: </b></p>
+    <p id="universalLink1"><b>Universal Link: </b></p>
+    <p id="universalLink2"><b>Universal Link with Query params: </b></p>
     <p><a href="liff/path/?param=9">Link to Path</a></p>
 
     <button id="btnMsg" onclick="sendMsg()">Send Message</button>
@@ -66,27 +67,41 @@
 
       async function sendMsg() {}
 
-      function getContext() {}
+      function getContext() {
+        // Gets the screen type (1-on-1 chat, group, room, or external browser) from which the LIFF app is launched.
+        document.getElementById("type").append(liff.getContext().type);
+        document.getElementById("viewType").append(liff.getContext().viewType);
+        document.getElementById("utouId").append(liff.getContext().utouId);
+        document.getElementById("roomId").append(liff.getContext().roomId);
+        document.getElementById("groupId").append(liff.getContext().groupId);
+      }
 
       async function getUserProfile() {
+        // Gets the current user's profile.
         const profile = await liff.getProfile();
         document.getElementById("pictureUrl").src = profile.pictureUrl;
         document.getElementById("userId").append(profile.userId);
         document.getElementById("displayName").append(profile.displayName);
         document.getElementById("statusMessage").append(profile.statusMessage);
 
+        // Gets the payload of the ID token that's acquired by the LIFF SDK. The payload includes the user display name, profile image URL, and email address.
         document
           .getElementById("decodedIDToken")
           .append(liff.getDecodedIDToken().email);
       }
 
       function getEnvironment() {
+        // Gets the environment in which the user is running the LIFF app.
         document.getElementById("os").append(liff.getOS());
+        // Gets the language settings of the environment in which the LIFF app is running.
         document.getElementById("language").append(liff.getLanguage());
+        // Gets the version of the LIFF SDK.
         document.getElementById("version").append(liff.getVersion());
+        // Gets the current user's access token.
         document.getElementById("accessToken").append(liff.getAccessToken());
-
+        // Determines whether the LIFF app is running in LINE's in-app browser.
         document.getElementById("isInClient").append(liff.isInClient());
+
         if (liff.isInClient()) {
           document.getElementById("btnLogOut").style.display = "none";
         } else {
@@ -97,10 +112,12 @@
       }
 
       async function main() {
+        // Initializes a LIFF app. You can only call other LIFF SDK methods after calling liff.init()
         await liff.init({ liffId: "1654440750-aWEBeMPD" });
+
         getEnvironment();
         getUserProfile();
-        // getContext()
+        getContext();
         // getFriendship()
         // createUniversalLink()
       }
