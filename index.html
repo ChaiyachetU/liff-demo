@@ -30,6 +30,7 @@
     <p id="groupId"><b>groupId: </b></p>
 
     <p id="friendship"><b>isFriendship: </b></p>
+
     <p id="scanCode"><b>Code: </b></p>
     <p id="isLoggedIn"><b>isLoggedIn: </b></p>
     <p id="universalLink1"><b>Universal Link: </b></p>
@@ -63,7 +64,17 @@
 
       function openWindow() {}
 
-      async function getFriendship() {}
+      async function getFriendship() {
+        // Gets the friendship status of the LINE Official Account that's linked to the LINE Login channel to which the LIFF app is added.
+        const friend = await liff.getFriendship();
+        document.getElementById("friendship").append(friend.friendFlag);
+
+        if (!friend.friendFlag) {
+          if (confirm("คุณยังไม่ได้เพิ่ม Bot เป็นเพื่อน จะเพิ่มเลยไหม?")) {
+            window.location = "https://line.me/R/ti/p/@623evzmw";
+          }
+        }
+      }
 
       async function sendMsg() {
         // Sends messages on behalf of the user to the chat screen where the LIFF app is opened.
@@ -138,7 +149,7 @@
         getEnvironment();
         getUserProfile();
         getContext();
-        // getFriendship()
+        getFriendship();
         // createUniversalLink()
       }
 
