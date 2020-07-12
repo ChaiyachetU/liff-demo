@@ -22,6 +22,7 @@
     <p id="statusMessage"><b>statusMessage:</b></p>
 
     <p id="decodedIDToken"><b>email:</b></p>
+
     <p id="type"><b>type:</b></p>
     <p id="viewType"><b>viewType:</b></p>
     <p id="utouId"><b>utouId:</b></p>
@@ -73,6 +74,10 @@
         document.getElementById("userId").append(profile.userId);
         document.getElementById("displayName").append(profile.displayName);
         document.getElementById("statusMessage").append(profile.statusMessage);
+
+        document
+          .getElementById("decodedIDToken")
+          .append(liff.getDecodedIDToken().email);
       }
 
       function getEnvironment() {
