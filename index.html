@@ -39,6 +39,7 @@
 
     <button id="btnMsg" onclick="sendMsg()">Send Message</button>
     <button id="btnShare" onclick="shareMsg()">Share Target Picker</button>
+
     <button onclick="openWindow()">Open Window</button>
     <button id="btnScanCode" onclick="scanCode()">Scan Code</button>
     <button id="btnLogOut" onclick="logOut()">Log Out</button>
@@ -62,7 +63,13 @@
 
       async function scanCode() {}
 
-      function openWindow() {}
+      function openWindow() {
+        // Opens the specified URL in the in-app browser of LINE or external browser.
+        liff.openWindow({
+          url: "https://adamblog.co",
+          external: true,
+        });
+      }
 
       async function getFriendship() {
         // Gets the friendship status of the LINE Official Account that's linked to the LINE Login channel to which the LIFF app is added.
