@@ -37,6 +37,7 @@
 
     <p id="universalLink1"><b>Universal Link: </b></p>
     <p id="universalLink2"><b>Universal Link with Query params: </b></p>
+
     <p><a href="liff/path/?param=9">Link to Path</a></p>
 
     <button id="btnMsg" onclick="sendMsg()">Send Message</button>
@@ -57,7 +58,15 @@
     <script>
       function createUniversalLink() {}
 
-      async function shareMsg() {}
+      async function shareMsg() {
+        // Displays the target picker (screen for selecting a group or friend) and sends the message created by the developer to the selected target.
+        await liff.shareTargetPicker([
+          {
+            type: "text",
+            text: "This message was sent by ShareTargetPicker😍😍😍",
+          },
+        ]);
+      }
 
       function logOut() {
         // Logs out.
