@@ -32,6 +32,7 @@
     <p id="friendship"><b>isFriendship: </b></p>
 
     <p id="scanCode"><b>Code: </b></p>
+
     <p id="isLoggedIn"><b>isLoggedIn: </b></p>
     <p id="universalLink1"><b>Universal Link: </b></p>
     <p id="universalLink2"><b>Universal Link with Query params: </b></p>
@@ -61,7 +62,11 @@
 
       function closed() {}
 
-      async function scanCode() {}
+      async function scanCode() {
+        // Starts LINE's QR code reader and gets the string read by the user.
+        const result = await liff.scanCode();
+        document.getElementById("scanCode").append(result.value);
+      }
 
       function openWindow() {
         // Opens the specified URL in the in-app browser of LINE or external browser.
