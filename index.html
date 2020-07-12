@@ -60,7 +60,10 @@
 
       function logOut() {}
 
-      function closed() {}
+      function closed() {
+        // Closes the LIFF app.
+        liff.closeWindow();
+      }
 
       async function scanCode() {
         // Starts LINE's QR code reader and gets the string read by the user.
