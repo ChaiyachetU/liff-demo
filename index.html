@@ -60,7 +60,7 @@
         // Gets the permanent link for the current page.
         const link1 = liff.permanentLink.createUrl();
         document.getElementById("universalLink1").append(link1);
-
+        // You can add any query parameter to a permanent link on the current page.
         liff.permanentLink.setExtraQueryParams("param=9");
 
         const link2 = liff.permanentLink.createUrl();
