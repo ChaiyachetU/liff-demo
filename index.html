@@ -58,7 +58,7 @@
       // Init vConsole
       var vConsole = new VConsole();
       console.log("Hello World!");
-      errorPlease();
+      // errorPlease();
     </script>
 
     <!-- Integrating the LIFF SDK -->
@@ -73,6 +73,7 @@
         liff.permanentLink.setExtraQueryParams("param=9");
 
         const link2 = liff.permanentLink.createUrl();
+        console.log(link2);
         document.getElementById("universalLink2").append(link2);
       }
 
