@@ -54,26 +54,26 @@
 
     <!-- Import js/vconsole.min.js to your project: https://github.com/Tencent/vConsole -->
     <script src="js/vconsole.min.js"></script>
-    <script></script>
+    <script>
+      // Init vConsole
+      var vConsole = new VConsole();
+      console.log("Hello World!");
+      errorPlease();
+    </script>
 
     <!-- Integrating the LIFF SDK -->
     <script src="https://static.line-scdn.net/liff/edge/versions/2.2.0/sdk.js"></script>
     <!-- Functions -->
     <script>
       function createUniversalLink() {
-        // Init vConsole
-        var vConsole = new VConsole();
-        console.log("Hello World! in function");
-        // errorPlease();
         // Gets the permanent link for the current page.
         const link1 = liff.permanentLink.createUrl();
-        console.log("hello" + link1);
         document.getElementById("universalLink1").append(link1);
+
         // You can add any query parameter to a permanent link on the current page.
-        liff.permanentLink.setExtraQueryParams("param=9");
+        liff.permanentLink.setExtraQueryParam("param=9");
 
         const link2 = liff.permanentLink.createUrl();
-        console.log("hello" + link2);
         document.getElementById("universalLink2").append(link2);
       }
 
