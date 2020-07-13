@@ -188,22 +188,24 @@
       }
 
       async function main() {
+        // A property holding the Promise object that resolves when you run liff.init() for the first time after starting the LIFF app.
+        liff.ready.then(() => {
+          // Checks whether the user is logged in.
+          document.getElementById("isLoggedIn").append(liff.isLoggedIn());
+
+          if (liff.isLoggedIn()) {
+            getEnvironment();
+            getUserProfile();
+            getContext();
+            getFriendship();
+            createUniversalLink();
+          } else {
+            // Performs the LINE Login process (web login) for the Web app.
+            liff.login();
+          }
+        });
         // Initializes a LIFF app. You can only call other LIFF SDK methods after calling liff.init()
         await liff.init({ liffId: "1654440750-aWEBeMPD" });
-
-        // Checks whether the user is logged in.
-        document.getElementById("isLoggedIn").append(liff.isLoggedIn());
-
-        if (liff.isLoggedIn()) {
-          getEnvironment();
-          getUserProfile();
-          getContext();
-          getFriendship();
-          createUniversalLink();
-        } else {
-          // Performs the LINE Login process (web login) for the Web app.
-          // liff.login();
-        }
       }
 
       main();
