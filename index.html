@@ -60,12 +60,11 @@
     <script src="https://static.line-scdn.net/liff/edge/versions/2.2.0/sdk.js"></script>
     <!-- Functions -->
     <script>
-      // Init vConsole
-      var vConsole = new VConsole();
-      console.log("Hello World! in main script");
-      // errorPlease();
-
       function createUniversalLink() {
+        // Init vConsole
+        var vConsole = new VConsole();
+        console.log("Hello World! in main script");
+        // errorPlease();
         // Gets the permanent link for the current page.
         const link1 = liff.permanentLink.createUrl();
         document.getElementById("universalLink1").append(link1);
