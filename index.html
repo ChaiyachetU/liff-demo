@@ -52,15 +52,17 @@
     <button id="btnLogOut" onclick="logOut()">Log Out</button>
     <button id="btnClose" onclick="closed()">Close</button>
 
-    <!-- <script src="js/vconsole.min.js"></script> -->
-    <!-- <script>
-    var vConsole = new VConsole()
-    console.log("Hello World!")
-  </script> -->
+    <!-- Import dist/vconsole.min.js to your project: -->
+    <script src="js/vconsole.min.js"></script>
+    <script>
+      // Init vConsole
+      var vConsole = new VConsole();
+      console.log("Hello World!");
+      errorPlease();
+    </script>
 
     <!-- Integrating the LIFF SDK -->
     <script src="https://static.line-scdn.net/liff/edge/versions/2.2.0/sdk.js"></script>
-
     <!-- Functions -->
     <script>
       function createUniversalLink() {
