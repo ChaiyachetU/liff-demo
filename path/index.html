@@ -9,6 +9,7 @@
     <title>Path</title>
     <link rel="stylesheet" href="css/style.css" media="all" />
   </head>
+
   <body>
     <h1>Hello World!</h1>
     <p id="param"><b>Query Param: </b></p>
@@ -17,11 +18,46 @@
     <p id="displayName"><b>displayName:</b></p>
     <p id="statusMessage"><b>statusMessage:</b></p>
     <p id="decodedIDToken"><b>email:</b></p>
+
     <script>
       // Query Params
       const queryString = decodeURIComponent(window.location.search);
       const params = new URLSearchParams(queryString);
       document.getElementById("param").append(params.get("param"));
+    </script>
+
+    <!-- Integrating the LIFF SDK -->
+    <script src="https://static.line-scdn.net/liff/edge/versions/2.2.0/sdk.js"></script>
+
+    <script>
+      async function getUserProfile() {
+        // Gets the current user's profile.
+        const profile = await liff.getProfile();
+        document.getElementById("pictureUrl").src = profile.pictureUrl;
+        document.getElementById("userId").append(profile.userId);
+        document.getElementById("displayName").append(profile.displayName);
+        document.getElementById("statusMessage").append(profile.statusMessage);
+        // Gets the payload of the ID token that's acquired by the LIFF SDK. The payload includes the user display name, profile image URL, and email address.
+        document
+          .getElementById("decodedIDToken")
+          .append(liff.getDecodedIDToken().email);
+      }
+
+      async function main() {
+        // Initializes a LIFF app. You can only call other LIFF SDK methods after calling liff.init()
+        await liff.init({ liffId: "1654440750-aWEBeMPD" });
+        // Checks whether the user is logged in.
+        if (liff.isLoggedIn()) {
+          getUserProfile();
+        } else {
+          // Performs the LINE Login process (web login) for the Web app.
+          liff.login({
+            redirectUri: "https://chaiyachetu.github.io/liff-demo/path",
+          });
+        }
+      }
+
+      main();
     </script>
   </body>
 </html>
