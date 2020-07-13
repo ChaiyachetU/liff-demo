@@ -38,7 +38,11 @@
     <p id="universalLink1"><b>Universal Link: </b></p>
     <p id="universalLink2"><b>Universal Link with Query params: </b></p>
 
-    <p><a href="liff/path/?param=9">Link to Path</a></p>
+    <p>
+      <a href="https://chaiyachetu.github.io/liff-demo/path/?param=9"
+        >Link to Path</a
+      >
+    </p>
 
     <button id="btnMsg" onclick="sendMsg()">Send Message</button>
     <button id="btnShare" onclick="shareMsg()">Share Target Picker</button>
@@ -54,7 +58,10 @@
     console.log("Hello World!")
   </script> -->
 
+    <!-- Integrating the LIFF SDK -->
     <script src="https://static.line-scdn.net/liff/edge/versions/2.2.0/sdk.js"></script>
+
+    <!-- Functions -->
     <script>
       function createUniversalLink() {
         // Gets the permanent link for the current page.
@@ -65,6 +72,7 @@
 
         const link2 = liff.permanentLink.createUrl();
         document.getElementById("universalLink2").append(link2);
+        alert(link2);
       }
 
       async function shareMsg() {
