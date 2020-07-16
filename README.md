@@ -1,2 +1,2 @@
-# liff-interest-calculation
-LIFF interest calculation for P Auto
+# liff-demo
+LIFF demo from Skooldio x LINE Thailand
